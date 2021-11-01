@@ -14,7 +14,7 @@ const routes = [
     component: Home,
   },
   {
-    path: "/search",
+    path: "/search/:search_query",
     name: "Search",
     component: Search,
   },

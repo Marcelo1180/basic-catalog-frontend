@@ -32,18 +32,18 @@ export default {
     },
     mounted() {
         document.title = 'Search | Products'
-
-        let uri = window.location.search.substring(1)
-        let params = new URLSearchParams(uri)
-
-        if (params.get('query')) {
-            this.query = params.get('query')
-
-            this.performSearch()
+        this.performSearch()
+    },
+    watch: {
+        $route(to, from) {
+            if (to.name === 'Search') {
+                this.performSearch()
+            }
         }
     },
     methods: {
         async performSearch() {
+            this.query = this.$route.params.search_query
             this.$store.commit('setIsLoading', true)
 
             await axios
