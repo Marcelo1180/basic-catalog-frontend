@@ -44,7 +44,7 @@
               </template>
 
               <template v-else>
-                <router-link to="/log-in" class="button is-light">Log in</router-link>
+                <a href="https://test-zebrands-backend.herokuapp.com/admin/" class="button is-light">Administrator</a>
               </template>
             </div>
           </div>

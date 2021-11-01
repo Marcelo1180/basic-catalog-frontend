@@ -51,7 +51,7 @@ export default {
                 .get(`/catalog/v1/filter/brand/${category_id}/product/`)
                 .then(response => {
                     this.category = response.data
-                    document.title = this.category.name + ' | Products'
+                    document.title = 'Category'
                 })
                 .catch(error => {
                     toast({
