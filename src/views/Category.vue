@@ -6,7 +6,7 @@
             </div>
 
             <ProductBox 
-                v-for="product in category.products"
+                v-for="product in category"
                 v-bind:key="product.id"
                 v-bind:product="product" />
         </div>
@@ -43,20 +43,17 @@ export default {
     },
     methods: {
         async getCategory() {
-            const categorySlug = this.$route.params.category_slug
+            const category_id = this.$route.params.category_id
 
             this.$store.commit('setIsLoading', true)
 
             axios
-                .get(`/api/v1/products/${categorySlug}/`)
+                .get(`/catalog/v1/filter/brand/${category_id}/product/`)
                 .then(response => {
                     this.category = response.data
-
-                    document.title = this.category.name + ' | Djackets'
+                    document.title = this.category.name + ' | Products'
                 })
                 .catch(error => {
-                    console.log(error)
-
                     toast({
                         message: 'Something went wrong. Please try again.',
                         type: 'is-danger',

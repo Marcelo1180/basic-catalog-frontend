@@ -31,7 +31,7 @@ export default {
         }
     },
     mounted() {
-        document.title = 'Search | Djackets'
+        document.title = 'Search | Products'
 
         let uri = window.location.search.substring(1)
         let params = new URLSearchParams(uri)
@@ -47,12 +47,19 @@ export default {
             this.$store.commit('setIsLoading', true)
 
             await axios
-                .post('/api/v1/products/search/', {'query': this.query})
+            .get(`/catalog/v1/search/product/?query=${this.query}`)
                 .then(response => {
-                    this.products = response.data
+                  this.products = response.data
                 })
                 .catch(error => {
-                    console.log(error)
+                  toast({
+                    message: "Something went wrong. Please try again.",
+                    type: "is-danger",
+                    dismissible: true,
+                    pauseOnHover: true,
+                    duration: 2000,
+                    position: "bottom-right",
+                  });
                 })
 
             this.$store.commit('setIsLoading', false)
