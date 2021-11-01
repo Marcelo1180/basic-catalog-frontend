@@ -31,6 +31,7 @@ const routes = [
 ];
 
 const router = createRouter({
+  base: 'alddddd1',
   history: createWebHistory(process.env.BASE_URL),
   routes,
 });
